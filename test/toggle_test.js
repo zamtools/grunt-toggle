@@ -4,7 +4,6 @@ var grunt = require('grunt');
 
 exports.toggle = {
   setUp: function(done) {
-    // setup here if necessary
     done();
   },
   show_all: function(test) {
