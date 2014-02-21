@@ -26,7 +26,8 @@ module.exports = function(grunt) {
     // see https://github.com/outaTiME/grunt-replace/blob/master/tasks/replace.js#L139
 
     var detectDestType = function(dest) {
-      return _.endsWith(dest, '/') ? 'directory' : 'file';
+      // dest is a directory if it ends with a slash
+      return dest[dest.length - 1] === '/' ? 'directory' : 'file';
     };
 
     var unixifyPath = function(filepath) {
@@ -95,6 +96,7 @@ module.exports = function(grunt) {
         if (grunt.file.isDir(src)) {
           grunt.file.mkdir(dest);
         } else {
+          console.log('ding');
           toggle(src, dest, options);
           if (options.mode !== false) {
             fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);

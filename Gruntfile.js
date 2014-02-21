@@ -31,7 +31,7 @@ module.exports = function(grunt) {
           show: ['head', 'body']
         },
         files: {
-          'tmp/show_all.html': ['test/fixtures/show_all.html'],
+          'tmp/show_all.html': ['test/fixtures/test.html'],
         },
       },
       show_none: {
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
           show: []
         },
         files: {
-          'tmp/show_none.html': ['test/fixtures/show_none.html'],
+          'tmp/show_none.html': ['test/fixtures/test.html'],
         },
       },
       show_head: {
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
           show: ['head']
         },
         files: {
-          'tmp/show_head.html': ['test/fixtures/show_head.html'],
+          'tmp/show_head.html': ['test/fixtures/test.html'],
         },
       },
       show_body: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
           show: ['body']
         },
         files: {
-          'tmp/show_body.html': ['test/fixtures/show_body.html'],
+          'tmp/show_body.html': ['test/fixtures/test.html'],
         },
       },
     },
