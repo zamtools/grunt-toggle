@@ -39,5 +39,8 @@
     "gruntplugin",
     "toggle",
     "template"
-  ]
+  ],
+  "dependencies": {
+    "lodash": "~2.4.1"
+  }
 }
