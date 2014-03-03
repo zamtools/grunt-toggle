@@ -25,65 +25,90 @@ In your project's Gruntfile, add a section named `toggle` to the data object pas
 ```js
 grunt.initConfig({
   toggle: {
-    options: {
-      // Task-specific options go here.
+    dev: {
+      options: {
+        show: ['dev']
+      }
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    dist: {
+      options: {
+        show: ['dist', 'prod']
+      }
+    }
   },
 });
 ```
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.show
+Type: `Array`
+Default value: `[]`
 
-A string value that is used to do something with whatever.
+An array of strings which correspond to the toggle comment blocks you wish to keep in your html file. All blocks not listed will be removed.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### mode
+Type: `Boolean` or `Number`
+Default: `false`
 
-A string value that is used to do something else with whatever else.
+Whether to copy or set the existing file permissions. Set to `true` to copy the existing file permissions. Or set to the mode, i.e.: `0644`, that copied files will be set to.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+Given the following html:
+
+```html
+<html>
+    <head>
+        <title>toggle</title>
+
+        <!-- toggle:head -->
+        <script>console.log('head visible');</script>
+        <!-- endtoggle -->
+    </head>
+
+    <body>
+        <!-- toggle:body -->
+        <p>body visible</p>
+        <!-- endtoggle -->
+    </body>
+</html>
+```
+
+To only show the `head` toggle block, use the following options:
 
 ```js
 grunt.initConfig({
   toggle: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    dev: {
+      options: {
+        show: ['head']
+      },
+      files: {
+        'index.html': ['index.html'],
+      }
+    }
   },
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+The output would be:
 
-```js
-grunt.initConfig({
-  toggle: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+```html
+<html>
+    <head>
+        <title>toggle</title>
+
+        <script>console.log('head visible');</script>
+    </head>
+
+    <body>
+    </body>
+</html>
 ```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+1.0.0 - Initial release
